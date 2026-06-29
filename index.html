@@ -15,6 +15,7 @@
             --purple-glow: rgba(168, 85, 247, 0.3);
             --glass: rgba(255, 255, 255, 0.04);
             --glass-hover: rgba(255, 255, 255, 0.07);
+            --red: #ef4444;
         }
 
         * {
@@ -24,8 +25,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui,
-                sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
@@ -176,27 +176,18 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    rgba(255, 255, 255, 0.1),
-                    transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), transparent);
             transition: left 0.6s ease;
         }
 
         .btn-primary:hover::before {
             left: 100%;
         }
-
         .btn-primary:hover {
             background: #9333ea;
-            box-shadow:
-                0 8px 30px rgba(168, 85, 247, 0.6),
-                0 0 0 1px rgba(255, 255, 255, 0.15) inset,
-                0 1px 0 rgba(255, 255, 255, 0.25) inset;
+            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 0 rgba(255, 255, 255, 0.25) inset;
             transform: translateY(-2px);
         }
-
         .btn-primary:active {
             transform: translateY(0) scale(0.98);
             transition: transform 0.1s ease;
@@ -240,7 +231,6 @@
             justify-content: center;
             padding: 20px;
         }
-
         .modal-overlay.visible {
             display: flex;
         }
@@ -257,9 +247,7 @@
             max-height: 90vh;
             overflow-y: auto;
             animation: modalIn 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
 
         @keyframes modalIn {
@@ -321,7 +309,6 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-
         .input-glass:hover {
             background: var(--glass-hover);
             border-color: rgba(255, 255, 255, 0.15);
@@ -333,6 +320,10 @@
         }
         .input-glass::placeholder {
             color: rgba(255, 255, 255, 0.25);
+        }
+        .input-glass.input-error {
+            border-color: var(--red) !important;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2) !important;
         }
 
         select.input-glass {
@@ -377,10 +368,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-            box-shadow:
-                0 4px 15px rgba(168, 85, 247, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-                0 1px 0 rgba(255, 255, 255, 0.2) inset;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.2) inset;
         }
         .btn-submit::before {
             content: '';
@@ -389,11 +377,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    rgba(255, 255, 255, 0.1),
-                    transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), transparent);
             transition: left 0.6s ease;
         }
         .btn-submit:hover::before {
@@ -410,6 +394,17 @@
         .btn-submit:disabled {
             opacity: 0.6;
             pointer-events: none;
+        }
+
+        .error-message {
+            color: #fca5a5;
+            font-size: 0.78em;
+            text-align: center;
+            margin-top: 6px;
+            display: none;
+        }
+        .error-message.visible {
+            display: block;
         }
 
         .tg-overlay {
@@ -471,6 +466,60 @@
             margin-top: 24px;
         }
 
+        .busy-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        .busy-overlay.visible {
+            display: flex;
+        }
+        .busy-popup {
+            background: var(--card-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 28px;
+            padding: 44px 32px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: modalIn 0.6s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .busy-popup .busy-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            background: rgba(239, 68, 68, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+        .busy-popup h2 {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .busy-popup p {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        .busy-popup .btn-primary {
+            margin-top: 24px;
+            background: #6b7280;
+        }
+
         @media (max-width: 500px) {
             .card {
                 padding: 36px 24px;
@@ -487,20 +536,11 @@
             .header h1 {
                 font-size: 1.8em;
             }
-            .header .icon {
-                width: 52px;
-                height: 52px;
-                font-size: 24px;
-                border-radius: 16px;
-            }
             .btn-secondary {
                 width: 90%;
             }
             .btn-submit {
                 width: 85%;
-            }
-            .tg-popup {
-                padding: 32px 24px;
             }
         }
     </style>
@@ -513,14 +553,8 @@
                 <h1>Nana Okeana</h1>
                 <p>TATTOO MASTER</p>
             </div>
-
-            <button class="btn-primary" onclick="openModal()">
-                Записаться на сеанс
-            </button>
-
-            <button class="btn-secondary" onclick="openContacts()">
-                Контакты
-            </button>
+            <button class="btn-primary" onclick="openModal()">Записаться на сеанс</button>
+            <button class="btn-secondary" onclick="openContacts()">Контакты</button>
         </div>
     </div>
 
@@ -528,14 +562,11 @@
         <div class="modal">
             <h2>Запись на сеанс</h2>
             <p class="subtitle">Заполните анкету, и мастер свяжется с вами</p>
-
             <form id="bookingForm">
                 <div class="form-group">
                     <label>Идея татуировки</label>
-                    <textarea class="input-glass" id="idea" rows="3"
-                    placeholder="Опишите вашу идею, стиль, сюжет..." required></textarea>
+                    <textarea class="input-glass" id="idea" rows="3" placeholder="Опишите вашу идею, стиль, сюжет..." required></textarea>
                 </div>
-
                 <div class="form-group">
                     <label>Место расположения</label>
                     <select class="input-glass" id="placement" required>
@@ -552,7 +583,6 @@
                         <option>Другое</option>
                     </select>
                 </div>
-
                 <div class="row">
                     <div class="form-group">
                         <label>Дата</label>
@@ -563,7 +593,6 @@
                         <input type="time" class="input-glass" id="time" required>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="form-group">
                         <label>Имя</label>
@@ -574,16 +603,14 @@
                         <input type="tel" class="input-glass" id="phone" placeholder="+7 999 123-45-67" required>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label>Telegram username</label>
                     <input type="text" class="input-glass" id="telegram" placeholder="@username">
                 </div>
-
-                <p style="font-size:0.7em;color:var(--text-secondary);text-align:center;margin-bottom:16px;">
-                    🔔 На указанный Telegram придёт подтверждение и напоминание за день до сеанса
+                <p style="font-size:0.7em;color:var(--text-secondary);text-align:center;margin-bottom:8px;">
+                    🔔 На Telegram придёт подтверждение и напоминание
                 </p>
-
+                <p class="error-message" id="errorMessage">Это время уже занято. Выберите другую дату или время.</p>
                 <button type="submit" class="btn-submit">Готово</button>
             </form>
         </div>
@@ -593,52 +620,57 @@
         <div class="tg-popup">
             <div class="tg-icon">✈️</div>
             <h2>Загляните в Telegram</h2>
-            <p>Ваша заявка отправлена мастеру <span class="highlight">@nana_okeana</span></p>
-            <p style="font-size:0.8em;margin-top:8px;">Там же придёт напоминание<br>за день до сеанса 🔔</p>
+            <p>Заявка отправлена мастеру <span class="highlight">@nana_okeana</span></p>
+            <p style="font-size:0.8em;margin-top:8px;">Напоминание придёт за день до сеанса 🔔</p>
             <button class="btn-primary" onclick="closeTgPopup()">Понятно</button>
         </div>
     </div>
 
+    <div class="busy-overlay" id="busyOverlay">
+        <div class="busy-popup">
+            <div class="busy-icon">📅</div>
+            <h2>Время занято</h2>
+            <p>На эту дату и время уже есть запись. Пожалуйста, выберите другое время.</p>
+            <button class="btn-primary" onclick="closeBusyPopup()">Понятно</button>
+        </div>
+    </div>
+
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzMx3-C-cVvQfBnvrHKgCr_IKeaZAL8TjDuipWlmdL6jGGSz6Kp91amVHJaJNzaL_w/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4uPl9XDei5Ser72hGBe1bVVU8fr45RhUjlhg5mcroPIixd-cUxOfEmmoOiR_kaCC-/exec';
         const TELEGRAM_BOT_TOKEN = '8804288065:AAHw8rFffYYCt_fT3orqx-scfHzoDREe-bo';
         const MASTER_CHAT_ID = '905404501';
         const MASTER_TG_LINK = 'https://t.me/nana_okeana';
 
-        function openModal() {
-            document.getElementById('modalOverlay').classList.add('visible');
-            document.body.style.overflow = 'hidden';
-        }
+        function openModal() { document.getElementById('modalOverlay').classList.add('visible');
+            document.body.style.overflow = 'hidden'; }
 
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('visible');
-            document.body.style.overflow = '';
-        }
+        function closeModal() { document.getElementById('modalOverlay').classList.remove('visible');
+            document.body.style.overflow = ''; }
 
-        function openContacts() {
-            window.open(MASTER_TG_LINK, '_blank');
-        }
+        function openContacts() { window.open(MASTER_TG_LINK, '_blank'); }
 
-        function closeTgPopup() {
-            document.getElementById('tgOverlay').classList.remove('visible');
+        function closeTgPopup() { document.getElementById('tgOverlay').classList.remove('visible');
             document.body.style.overflow = '';
             document.getElementById('bookingForm').reset();
-        }
+            document.getElementById('errorMessage').classList.remove('visible'); }
 
-        document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
+        function closeBusyPopup() { document.getElementById('busyOverlay').classList.remove('visible');
+            document.body.style.overflow = ''; }
 
-        document.getElementById('tgOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeTgPopup();
-        });
+        document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this)
+            closeModal(); });
+        document.getElementById('tgOverlay').addEventListener('click', function(e) { if (e.target === this)
+            closeTgPopup(); });
+        document.getElementById('busyOverlay').addEventListener('click', function(e) { if (e.target === this)
+            closeBusyPopup(); });
 
         document.getElementById('bookingForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-
             const btn = e.target.querySelector('.btn-submit');
             const originalText = btn.textContent;
-            btn.textContent = 'Отправка...';
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.classList.remove('visible');
+            btn.textContent = 'Проверка...';
             btn.disabled = true;
 
             const formData = {
@@ -649,16 +681,24 @@
                 name: document.getElementById('name').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
                 telegram: document.getElementById('telegram').value.trim() || '—',
-                timestamp: new Date().toISOString(),
             };
 
             try {
-                await fetch(GOOGLE_SCRIPT_URL, {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData),
                 });
+                const result = await response.json();
+
+                if (result.result === 'busy') {
+                    errorEl.classList.add('visible');
+                    document.getElementById('date').classList.add('input-error');
+                    document.getElementById('time').classList.add('input-error');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    return;
+                }
 
                 const masterMsg = `
         🖤 <b>НОВАЯ ЗАПИСЬ</b>
@@ -669,12 +709,11 @@
         💡 ${formData.idea}
         📍 ${formData.placement}
                 `.trim();
-
                 await sendTelegram(MASTER_CHAT_ID, masterMsg);
 
                 if (formData.telegram && formData.telegram !== '—') {
                     const clientMsg =
-                        `✅ <b>Заявка принята!</b>\n\nМастер скоро свяжется с вами для подтверждения.\n\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}\n\n🔔 Напоминание придёт за день до сеанса.`;
+                        `✅ <b>Заявка принята!</b>\n\nМастер скоро свяжется с вами.\n\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}\n\n🔔 Напоминание придёт за день до сеанса.`;
                     await sendTelegramToUsername(formData.telegram, clientMsg);
                 }
 
@@ -684,12 +723,15 @@
 
             } catch (error) {
                 console.error('Ошибка:', error);
-                alert('Ошибка отправки. Попробуйте ещё раз или напишите в Telegram.');
+                alert('Ошибка отправки. Попробуйте ещё раз.');
             } finally {
                 btn.textContent = originalText;
                 btn.disabled = false;
             }
         });
+
+        document.getElementById('date').addEventListener('change', function() { this.classList.remove('input-error'); });
+        document.getElementById('time').addEventListener('change', function() { this.classList.remove('input-error'); });
 
         async function sendTelegram(chatId, text) {
             try {
@@ -698,9 +740,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' }),
                 });
-            } catch (e) {
-                console.log('TG send error:', e);
-            }
+            } catch (e) { console.log('TG error:', e); }
         }
 
         async function sendTelegramToUsername(username, text) {
@@ -709,8 +749,7 @@
         }
 
         document.getElementById('date').setAttribute('min', new Date().toISOString().split('T')[0]);
-
-        console.log('🚀 Сайт Tattoo Nana загружен и готов к работе');
+        console.log('🚀 Сайт Tattoo Nana готов');
     </script>
 </body>
 </html>
