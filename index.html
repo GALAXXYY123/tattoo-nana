@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tattoo Nana — Запись на сеанс</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --card-bg: rgba(20, 20, 35, 0.6);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e8e8f0;
+            --text-secondary: #9b9bb8;
+            --purple: #a855f7;
+            --purple-glow: rgba(168, 85, 247, 0.3);
+            --glass: rgba(255, 255, 255, 0.04);
+            --glass-hover: rgba(255, 255, 255, 0.07);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui,
+                sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(168, 85, 247, 0.04) 0%, transparent 40%);
+            z-index: 0;
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+            33% {
+                transform: translate(1%, -1%);
+            }
+            66% {
+                transform: translate(-1%, 1%);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 52px 40px;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+                0 1px 0 rgba(255, 255, 255, 0.05) inset;
+            animation: cardAppear 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header {
+            margin-bottom: 44px;
+        }
+
+        .header .icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #e8e8f0 0%, #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 20px 32px;
+            margin-bottom: 16px;
+            background: var(--purple);
+            border: none;
+            border-radius: 18px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1.05em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+            box-shadow:
+                0 4px 20px rgba(168, 85, 247, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 1px 0 rgba(255, 255, 255, 0.2) inset;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    rgba(255, 255, 255, 0.1),
+                    transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #9333ea;
+            box-shadow:
+                0 8px 30px rgba(168, 85, 247, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+                0 1px 0 rgba(255, 255, 255, 0.25) inset;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+            transition: transform 0.1s ease;
+        }
+
+        .btn-secondary {
+            display: block;
+            width: 85%;
+            margin: 0 auto;
+            padding: 14px 28px;
+            background: transparent;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.85em;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.visible {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 40px 32px;
+            max-width: 460px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalIn 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal h2 {
+            text-align: center;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #e8e8f0 0%, #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal .subtitle {
+            text-align: center;
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-secondary);
+            margin-bottom: 7px;
+            margin-left: 4px;
+        }
+
+        .input-glass {
+            width: 100%;
+            padding: 13px 16px;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.95em;
+            transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+            outline: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .input-glass:hover {
+            background: var(--glass-hover);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .input-glass:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 4px var(--purple-glow), 0 0 20px rgba(168, 85, 247, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .input-glass::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        select.input-glass {
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239b9bb8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        select.input-glass option {
+            background: #1a1a2e;
+            color: #e8e8f0;
+        }
+
+        textarea.input-glass {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .btn-submit {
+            width: 72%;
+            margin: 8px auto 0;
+            display: block;
+            padding: 14px 24px;
+            background: var(--purple);
+            border: none;
+            border-radius: 16px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+            box-shadow:
+                0 4px 15px rgba(168, 85, 247, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 1px 0 rgba(255, 255, 255, 0.2) inset;
+        }
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    rgba(255, 255, 255, 0.1),
+                    transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-submit:hover::before {
+            left: 100%;
+        }
+        .btn-submit:hover {
+            background: #9333ea;
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.6);
+            transform: translateY(-1px);
+        }
+        .btn-submit:active {
+            transform: translateY(0) scale(0.98);
+        }
+        .btn-submit:disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .tg-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        .tg-overlay.visible {
+            display: flex;
+        }
+        .tg-popup {
+            background: var(--card-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 44px 32px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: modalIn 0.6s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .tg-popup .tg-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #2AABEE, #229ED9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            animation: float 2.5s ease-in-out infinite;
+        }
+        .tg-popup h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .tg-popup p {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+        .tg-popup .highlight {
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+        .tg-popup .btn-primary {
+            margin-top: 24px;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 36px 24px;
+                border-radius: 28px;
+            }
+            .modal {
+                padding: 28px 20px;
+                border-radius: 24px;
+            }
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .header .icon {
+                width: 52px;
+                height: 52px;
+                font-size: 24px;
+                border-radius: 16px;
+            }
+            .btn-secondary {
+                width: 90%;
+            }
+            .btn-submit {
+                width: 85%;
+            }
+            .tg-popup {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <div class="icon">⚡</div>
+                <h1>Nana Okeana</h1>
+                <p>TATTOO MASTER</p>
+            </div>
+
+            <button class="btn-primary" onclick="openModal()">
+                Записаться на сеанс
+            </button>
+
+            <button class="btn-secondary" onclick="openContacts()">
+                Контакты
+            </button>
+        </div>
+    </div>
+
+    <!-- Анкета -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2>Запись на сеанс</h2>
+            <p class="subtitle">Заполните анкету, и мастер свяжется с вами</p>
+
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>Идея татуировки</label>
+                    <textarea class="input-glass" id="idea" rows="3"
+                    placeholder="Опишите вашу идею, стиль, сюжет..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Место расположения</label>
+                    <select class="input-glass" id="placement" required>
+                        <option value="" disabled selected>Выберите место...</option>
+                        <option>Рука (плечо / предплечье)</option>
+                        <option>Кисть / запястье</option>
+                        <option>Шея</option>
+                        <option>Грудь</option>
+                        <option>Спина</option>
+                        <option>Рёбра / бок</option>
+                        <option>Бедро</option>
+                        <option>Голень / икра</option>
+                        <option>Стопа / лодыжка</option>
+                        <option>Другое</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label>Дата</label>
+                        <input type="date" class="input-glass" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Время</label>
+                        <input type="time" class="input-glass" id="time" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" class="input-glass" id="name" placeholder="Алексей" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон</label>
+                        <input type="tel" class="input-glass" id="phone" placeholder="+7 999 123-45-67" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Telegram username</label>
+                    <input type="text" class="input-glass" id="telegram" placeholder="@username">
+                </div>
+
+                <p style="font-size:0.7em;color:var(--text-secondary);text-align:center;margin-bottom:16px;">
+                    🔔 На указанный Telegram придёт подтверждение и напоминание за день до сеанса
+                </p>
+
+                <button type="submit" class="btn-submit">Готово</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Всплывашка Telegram -->
+    <div class="tg-overlay" id="tgOverlay">
+        <div class="tg-popup">
+            <div class="tg-icon">✈️</div>
+            <h2>Загляните в Telegram</h2>
+            <p>Ваша заявка отправлена мастеру <span class="highlight">@nana_okeana</span></p>
+            <p style="font-size:0.8em;margin-top:8px;">Там же придёт напоминание<br>за день до сеанса 🔔</p>
+            <button class="btn-primary" onclick="closeTgPopup()">Понятно</button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== НАСТРОЙКИ ====================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxW2DlNur9swGJDJutgTx0oYivXHg_4LwPMQGK0qVEj5GHJA8cWe4a9M_i0asgbTO56/exec';
+        const TELEGRAM_BOT_TOKEN = '8804288065:AAHw8rFffYYCt_fT3orqx-scfHzoDREe-bo';
+        const MASTER_CHAT_ID = '905404501';
+        const MASTER_TG_LINK = 'https://t.me/nana_okeana';
+
+        // ==================== ЛОГИКА ====================
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+
+        function openContacts() {
+            window.open(MASTER_TG_LINK, '_blank');
+        }
+
+        function closeTgPopup() {
+            document.getElementById('tgOverlay').classList.remove('visible');
+            document.body.style.overflow = '';
+            document.getElementById('bookingForm').reset();
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.getElementById('tgOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeTgPopup();
+        });
+
+        // Отправка формы
+        document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btn = e.target.querySelector('.btn-submit');
+            const originalText = btn.textContent;
+            btn.textContent = 'Отправка...';
+            btn.disabled = true;
+
+            const formData = {
+                idea: document.getElementById('idea').value.trim(),
+                placement: document.getElementById('placement').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                name: document.getElementById('name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                telegram: document.getElementById('telegram').value.trim() || '—',
+                timestamp: new Date().toISOString(),
+            };
+
+            try {
+                // Отправка в Google Таблицы
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+
+                // Уведомление мастеру
+                const masterMsg = `
+        🖤 <b>НОВАЯ ЗАПИСЬ</b>
+        👤 <b>${formData.name}</b>
+        📞 ${formData.phone}
+        ✈️ ${formData.telegram}
+        📅 ${formData.date} в ${formData.time}
+        💡 ${formData.idea}
+        📍 ${formData.placement}
+                `.trim();
+
+                await sendTelegram(MASTER_CHAT_ID, masterMsg);
+
+                // Уведомление клиенту
+                if (formData.telegram && formData.telegram !== '—') {
+                    const clientMsg =
+                        `✅ <b>Заявка принята!</b>\n\nМастер скоро свяжется с вами для подтверждения.\n\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}\n\n🔔 Напоминание придёт за день до сеанса.`;
+
+                    await sendTelegramToUsername(formData.telegram, clientMsg);
+                }
+
+                closeModal();
+                document.getElementById('tgOverlay').classList.add('visible');
+                document.body.style.overflow = 'hidden';
+
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Ошибка отправки. Попробуйте ещё раз или напишите в Telegram.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        async function sendTelegram(chatId, text) {
+            try {
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' }),
+                });
+            } catch (e) {
+                console.log('TG send error:', e);
+            }
+        }
+
+        async function sendTelegramToUsername(username, text) {
+            const note = `📨 <b>ОТПРАВИТЬ КЛИЕНТУ</b> ${username}:\n\n${text}`;
+            await sendTelegram(MASTER_CHAT_ID, note);
+        }
+
+        document.getElementById('date').setAttribute('min', new Date().toISOString().split('T')[0]);
+
+        console.log('🚀 Сайт Tattoo Nana загружен и готов к работе');
+    </script>
+</body>
+</html>
