@@ -524,7 +524,6 @@
         </div>
     </div>
 
-    <!-- Анкета -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <h2>Запись на сеанс</h2>
@@ -590,7 +589,6 @@
         </div>
     </div>
 
-    <!-- Всплывашка Telegram -->
     <div class="tg-overlay" id="tgOverlay">
         <div class="tg-popup">
             <div class="tg-icon">✈️</div>
@@ -602,13 +600,11 @@
     </div>
 
     <script>
-        // ==================== НАСТРОЙКИ ====================
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxW2DlNur9swGJDJutgTx0oYivXHg_4LwPMQGK0qVEj5GHJA8cWe4a9M_i0asgbTO56/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzMx3-C-cVvQfBnvrHKgCr_IKeaZAL8TjDuipWlmdL6jGGSz6Kp91amVHJaJNzaL_w/exec';
         const TELEGRAM_BOT_TOKEN = '8804288065:AAHw8rFffYYCt_fT3orqx-scfHzoDREe-bo';
         const MASTER_CHAT_ID = '905404501';
         const MASTER_TG_LINK = 'https://t.me/nana_okeana';
 
-        // ==================== ЛОГИКА ====================
         function openModal() {
             document.getElementById('modalOverlay').classList.add('visible');
             document.body.style.overflow = 'hidden';
@@ -637,7 +633,6 @@
             if (e.target === this) closeTgPopup();
         });
 
-        // Отправка формы
         document.getElementById('bookingForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -658,7 +653,6 @@
             };
 
             try {
-                // Отправка в Google Таблицы
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -666,7 +660,6 @@
                     body: JSON.stringify(formData),
                 });
 
-                // Уведомление мастеру
                 const masterMsg = `
         🖤 <b>НОВАЯ ЗАПИСЬ</b>
         👤 <b>${formData.name}</b>
@@ -679,11 +672,9 @@
 
                 await sendTelegram(MASTER_CHAT_ID, masterMsg);
 
-                // Уведомление клиенту
                 if (formData.telegram && formData.telegram !== '—') {
                     const clientMsg =
                         `✅ <b>Заявка принята!</b>\n\nМастер скоро свяжется с вами для подтверждения.\n\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}\n\n🔔 Напоминание придёт за день до сеанса.`;
-
                     await sendTelegramToUsername(formData.telegram, clientMsg);
                 }
 
