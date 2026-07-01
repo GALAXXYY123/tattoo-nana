@@ -18,17 +18,11 @@
             --text-secondary: #8a8a9a;
             --purple: #a855f7;
             --purple-glow: rgba(168, 85, 247, 0.25);
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-hover: rgba(255, 255, 255, 0.06);
             --font-display: 'Playfair Display', serif;
             --font-body: 'Inter', -apple-system, sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: var(--font-body);
@@ -45,37 +39,23 @@
         body::before {
             content: '';
             position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
             background:
-                radial-gradient(ellipse at 35% 25%, rgba(168, 85, 247, 0.06) 0%, transparent 45%),
-                radial-gradient(ellipse at 65% 55%, rgba(139, 92, 246, 0.04) 0%, transparent 45%),
-                radial-gradient(ellipse at 50% 75%, rgba(168, 85, 247, 0.03) 0%, transparent 40%);
+                radial-gradient(ellipse at 35% 25%, rgba(168,85,247,0.06) 0%, transparent 45%),
+                radial-gradient(ellipse at 65% 55%, rgba(139,92,246,0.04) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 75%, rgba(168,85,247,0.03) 0%, transparent 40%);
             z-index: 0;
             animation: bgShift 25s ease-in-out infinite;
         }
 
         @keyframes bgShift {
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-            33% {
-                transform: translate(1.5%, -1%);
-            }
-            66% {
-                transform: translate(-1%, 1.5%);
-            }
+            0%,100% { transform: translate(0,0); }
+            33% { transform: translate(1.5%,-1%); }
+            66% { transform: translate(-1%,1.5%); }
         }
 
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 520px;
-            width: 100%;
-        }
+        .container { position: relative; z-index: 1; max-width: 520px; width: 100%; }
 
         .card {
             background: var(--card-bg);
@@ -84,27 +64,14 @@
             border: 1px solid var(--border);
             border-radius: 36px;
             padding: 56px 44px;
-            box-shadow:
-                0 12px 40px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.02) inset,
-                0 1px 0 rgba(255, 255, 255, 0.04) inset;
-            animation: cardAppear 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.02) inset;
+            animation: cardAppear 1s ease forwards;
             text-align: center;
         }
 
         @keyframes cardAppear {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .header {
-            margin-bottom: 12px;
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .header h1 {
@@ -118,7 +85,6 @@
         }
 
         .header .role {
-            font-family: var(--font-body);
             font-size: 0.7em;
             text-transform: uppercase;
             letter-spacing: 5px;
@@ -127,11 +93,9 @@
         }
 
         .divider {
-            width: 50px;
-            height: 2px;
+            width: 50px; height: 2px;
             background: linear-gradient(90deg, transparent, var(--purple), transparent);
             margin: 32px auto;
-            border-radius: 1px;
         }
 
         .btn-primary {
@@ -150,41 +114,26 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-            box-shadow:
-                0 4px 20px rgba(168, 85, 247, 0.35),
-                0 0 0 1px rgba(255, 255, 255, 0.08) inset,
-                0 1px 0 rgba(255, 255, 255, 0.15) inset;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(168,85,247,0.35), 0 0 0 1px rgba(255,255,255,0.08) inset;
         }
 
         .btn-primary::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.15),
-                    rgba(255, 255, 255, 0.08),
-                    transparent);
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
             transition: left 0.7s ease;
         }
 
-        .btn-primary:hover::before {
-            left: 100%;
-        }
+        .btn-primary:hover::before { left: 100%; }
         .btn-primary:hover {
             background: #9333ea;
-            box-shadow:
-                0 8px 30px rgba(168, 85, 247, 0.55),
-                0 0 0 1px rgba(255, 255, 255, 0.12) inset;
             transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(168,85,247,0.55);
         }
-        .btn-primary:active {
-            transform: translateY(0) scale(0.97);
-        }
+        .btn-primary:active { transform: translateY(0) scale(0.97); }
 
         .btn-secondary {
             display: block;
@@ -192,91 +141,68 @@
             margin: 0 auto;
             padding: 13px 24px;
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255,255,255,0.12);
             border-radius: 14px;
             color: var(--text-secondary);
-            font-family: var(--font-body);
             font-size: 0.8em;
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            border-color: rgba(168, 85, 247, 0.4);
+            border-color: rgba(168,85,247,0.4);
             color: #fff;
-            background: rgba(255, 255, 255, 0.02);
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.08);
+            background: rgba(255,255,255,0.02);
         }
 
         .address {
             margin-top: 36px;
-            font-family: var(--font-body);
             font-size: 0.75em;
             color: var(--text-secondary);
             letter-spacing: 1px;
             line-height: 1.7;
         }
 
-        .address strong {
-            color: #c4b5fd;
-            font-weight: 500;
-        }
+        .address strong { color: #c4b5fd; font-weight: 500; }
 
-        /* Модальное окно */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.78);
+            background: rgba(0,0,0,0.78);
             backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
             z-index: 100;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
 
-        .modal-overlay.visible {
-            display: flex;
-        }
+        .modal-overlay.visible { display: flex; }
 
         .modal {
-            background: rgba(18, 18, 32, 0.7);
+            background: rgba(18,18,32,0.7);
             backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 28px;
             padding: 40px 32px;
             max-width: 460px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            animation: modalIn 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+            animation: modalIn 0.5s ease;
         }
 
         @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: translateY(24px) scale(0.94);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(24px) scale(0.94); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .modal h2 {
             font-family: var(--font-display);
             font-size: 1.6em;
-            font-weight: 700;
             text-align: center;
             color: #fff;
             margin-bottom: 4px;
@@ -284,78 +210,56 @@
 
         .modal .subtitle {
             text-align: center;
-            font-family: var(--font-body);
             font-size: 0.75em;
             color: var(--text-secondary);
             margin-bottom: 28px;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+        .form-group { margin-bottom: 15px; }
 
         .form-group label {
             display: block;
-            font-family: var(--font-body);
             font-size: 0.65em;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--text-secondary);
             margin-bottom: 6px;
-            margin-left: 4px;
         }
 
         .input-glass {
             width: 100%;
             padding: 13px 16px;
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 14px;
             color: #fff;
             font-family: var(--font-body);
             font-size: 0.9em;
-            transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
             outline: none;
+            transition: all 0.3s ease;
         }
 
-        .input-glass:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.14);
-        }
         .input-glass:focus {
             border-color: var(--purple);
             box-shadow: 0 0 0 4px var(--purple-glow);
-            background: rgba(255, 255, 255, 0.05);
         }
-        .input-glass::placeholder {
-            color: rgba(255, 255, 255, 0.2);
-        }
+        .input-glass::placeholder { color: rgba(255,255,255,0.2); }
 
         select.input-glass {
             cursor: pointer;
             appearance: none;
             -webkit-appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8a9a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8a9a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 16px center;
             padding-right: 40px;
         }
-        select.input-glass option {
-            background: #14142b;
-            color: #e8e8f0;
-        }
 
-        textarea.input-glass {
-            resize: vertical;
-            min-height: 75px;
-        }
+        select.input-glass option { background: #14142b; color: #e8e8f0; }
+        textarea.input-glass { resize: vertical; min-height: 75px; }
 
-        .row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
         .btn-submit {
             width: 68%;
@@ -366,75 +270,48 @@
             border: none;
             border-radius: 16px;
             color: #fff;
-            font-family: var(--font-body);
             font-size: 0.85em;
             font-weight: 600;
             letter-spacing: 1px;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-            box-shadow:
-                0 4px 15px rgba(168, 85, 247, 0.35),
-                0 0 0 1px rgba(255, 255, 255, 0.08) inset;
-        }
-        .btn-submit::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            transition: left 0.7s ease;
-        }
-        .btn-submit:hover::before {
-            left: 100%;
-        }
-        .btn-submit:hover {
-            background: #9333ea;
-            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
-            transform: translateY(-1px);
-        }
-        .btn-submit:active {
-            transform: translateY(0) scale(0.97);
-        }
-        .btn-submit:disabled {
-            opacity: 0.5;
-            pointer-events: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(168,85,247,0.35);
         }
 
-        /* Всплывашка Telegram */
+        .btn-submit:hover {
+            background: #9333ea;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(168,85,247,0.5);
+        }
+        .btn-submit:disabled { opacity: 0.5; pointer-events: none; }
+
         .tg-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.8);
             backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
             z-index: 200;
             align-items: center;
             justify-content: center;
         }
-        .tg-overlay.visible {
-            display: flex;
-        }
+
+        .tg-overlay.visible { display: flex; }
+
         .tg-popup {
-            background: rgba(18, 18, 32, 0.7);
+            background: rgba(18,18,32,0.7);
             backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 28px;
             padding: 44px 32px;
             text-align: center;
             max-width: 380px;
             width: 90%;
             animation: modalIn 0.6s ease;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
         }
+
         .tg-popup .tg-icon {
-            width: 68px;
-            height: 68px;
+            width: 68px; height: 68px;
             margin: 0 auto 20px;
             background: linear-gradient(135deg, #2AABEE, #229ED9);
             border-radius: 50%;
@@ -444,56 +321,22 @@
             font-size: 34px;
             animation: float 3s ease-in-out infinite;
         }
+
         @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-7px);
-            }
-        }
-        .tg-popup h2 {
-            font-family: var(--font-display);
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .tg-popup p {
-            font-family: var(--font-body);
-            color: var(--text-secondary);
-            font-size: 0.85em;
-            line-height: 1.5;
-        }
-        .tg-popup .highlight {
-            color: #7dd3fc;
-            font-weight: 600;
-        }
-        .tg-popup .btn-primary {
-            margin-top: 24px;
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
         }
 
+        .tg-popup h2 { font-family: var(--font-display); font-size: 1.4em; color: #fff; margin-bottom: 10px; }
+        .tg-popup p { font-size: 0.85em; color: var(--text-secondary); line-height: 1.5; }
+        .tg-popup .highlight { color: #7dd3fc; font-weight: 600; }
+        .tg-popup .btn-primary { margin-top: 24px; }
+
         @media (max-width: 500px) {
-            .card {
-                padding: 40px 24px;
-                border-radius: 30px;
-            }
-            .header h1 {
-                font-size: 3em;
-            }
-            .modal {
-                padding: 28px 20px;
-            }
-            .row {
-                grid-template-columns: 1fr;
-            }
-            .btn-secondary {
-                width: 90%;
-            }
-            .btn-submit {
-                width: 85%;
-            }
+            .card { padding: 40px 24px; }
+            .header h1 { font-size: 3em; }
+            .modal { padding: 28px 20px; }
+            .row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -504,12 +347,9 @@
                 <h1>Nana<br>Okeana</h1>
                 <p class="role">Tattoo Master</p>
             </div>
-
             <div class="divider"></div>
-
             <button class="btn-primary" onclick="openModal()">Записаться на сеанс</button>
             <button class="btn-secondary" onclick="openContacts()">Контакты</button>
-
             <div class="address">
                 проспект Маршала Жукова, 135<br>
                 студия <strong>KARMA OMUT</strong>
@@ -517,7 +357,6 @@
         </div>
     </div>
 
-    <!-- Анкета -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <h2>Запись на сеанс</h2>
@@ -544,24 +383,12 @@
                     </select>
                 </div>
                 <div class="row">
-                    <div class="form-group">
-                        <label>Дата</label>
-                        <input type="date" class="input-glass" id="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Время</label>
-                        <input type="time" class="input-glass" id="time" required>
-                    </div>
+                    <div class="form-group"><label>Дата</label><input type="date" class="input-glass" id="date" required></div>
+                    <div class="form-group"><label>Время</label><input type="time" class="input-glass" id="time" required></div>
                 </div>
                 <div class="row">
-                    <div class="form-group">
-                        <label>Имя</label>
-                        <input type="text" class="input-glass" id="name" placeholder="Ваше имя" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Телефон</label>
-                        <input type="tel" class="input-glass" id="phone" placeholder="+7 999 123-45-67" required>
-                    </div>
+                    <div class="form-group"><label>Имя</label><input type="text" class="input-glass" id="name" placeholder="Ваше имя" required></div>
+                    <div class="form-group"><label>Телефон</label><input type="tel" class="input-glass" id="phone" placeholder="+7 999 123-45-67" required></div>
                 </div>
                 <div class="form-group">
                     <label>Telegram username</label>
@@ -575,7 +402,6 @@
         </div>
     </div>
 
-    <!-- Всплывашка Telegram -->
     <div class="tg-overlay" id="tgOverlay">
         <div class="tg-popup">
             <div class="tg-icon">✈️</div>
@@ -587,8 +413,7 @@
     </div>
 
     <script>
-        const GOOGLE_SCRIPT_URL =
-            'https://script.google.com/macros/s/AKfycbyMi6E8wnZRzCDG9KGE455ZuCR7VxjexyjyCc3VziOQPgg-C_QrBJZM1sBlP8jcTwgK/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzqU4K-FKuK26c8ylOrm4uMfs7yQu3UxkFuzQhXdSSxVw0Nl4J752Ht-f_xKTY-QmCB/exec';
         const TELEGRAM_BOT_TOKEN = '8804288065:AAHw8rFffYYCt_fT3orqx-scfHzoDREe-bo';
         const MASTER_CHAT_ID = '905404501';
         const MASTER_TG_LINK = 'https://t.me/nana_okeana';
@@ -597,33 +422,23 @@
             document.getElementById('modalOverlay').classList.add('visible');
             document.body.style.overflow = 'hidden';
         }
-
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('visible');
             document.body.style.overflow = '';
         }
-
-        function openContacts() {
-            window.open(MASTER_TG_LINK, '_blank');
-        }
-
+        function openContacts() { window.open(MASTER_TG_LINK, '_blank'); }
         function closeTgPopup() {
             document.getElementById('tgOverlay').classList.remove('visible');
             document.body.style.overflow = '';
             document.getElementById('bookingForm').reset();
         }
 
-        document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-        document.getElementById('tgOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeTgPopup();
-        });
+        document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+        document.getElementById('tgOverlay').addEventListener('click', function(e) { if (e.target === this) closeTgPopup(); });
 
         document.getElementById('bookingForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = e.target.querySelector('.btn-submit');
-            const originalText = btn.textContent;
             btn.textContent = 'Отправка...';
             btn.disabled = true;
 
@@ -639,31 +454,26 @@
             };
 
             try {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData),
-                });
+                // Отправка в Google Таблицы (через JSONP-обход CORS)
+                const scriptUrl = GOOGLE_SCRIPT_URL + '?data=' + encodeURIComponent(JSON.stringify(formData));
+                await fetch(scriptUrl, { method: 'GET', mode: 'no-cors' });
 
+                // Отправка в Telegram
                 const masterMsg = `🖤 <b>НОВАЯ ЗАПИСЬ</b>\n👤 <b>${formData.name}</b>\n📞 ${formData.phone}\n✈️ ${formData.telegram}\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}`;
-
                 await sendTelegram(MASTER_CHAT_ID, masterMsg);
 
                 if (formData.telegram && formData.telegram !== '—') {
-                    const clientMsg =
-                        `📨 <b>ОТПРАВИТЬ КЛИЕНТУ</b> ${formData.telegram}:\n\n✅ Заявка принята!\nМастер скоро свяжется с вами.\n\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}\n\n🔔 Напоминание придёт за день до сеанса.`;
+                    const clientMsg = `📨 <b>ОТПРАВИТЬ КЛИЕНТУ</b> ${formData.telegram}:\n\n✅ Заявка принята!\nМастер скоро свяжется с вами.\n\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}\n\n🔔 Напоминание придёт за день до сеанса.`;
                     await sendTelegram(MASTER_CHAT_ID, clientMsg);
                 }
 
                 closeModal();
                 document.getElementById('tgOverlay').classList.add('visible');
-                document.body.style.overflow = 'hidden';
             } catch (error) {
                 console.error('Ошибка:', error);
-                alert('Ошибка отправки. Напишите мастеру в Telegram: @nana_okeana');
+                alert('Ошибка. Напишите мастеру: @nana_okeana');
             } finally {
-                btn.textContent = originalText;
+                btn.textContent = 'Готово';
                 btn.disabled = false;
             }
         });
@@ -675,13 +485,11 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' }),
                 });
-            } catch (e) {
-                console.log('TG error:', e);
-            }
+            } catch (e) { console.log('TG error:', e); }
         }
 
         document.getElementById('date').setAttribute('min', new Date().toISOString().split('T')[0]);
-        console.log('🚀 Сайт готов');
+        console.log('✅ Сайт готов. Баг исправлен — данные передаются через GET с параметром data.');
     </script>
 </body>
 </html>
