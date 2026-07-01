@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tattoo Nana — Запись на сеанс</title>
+    <title>Nana Okeana — Tattoo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --bg: #0a0a0f;
-            --card-bg: rgba(20, 20, 35, 0.6);
-            --border: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(20, 20, 35, 0.5);
+            --border: rgba(255, 255, 255, 0.06);
             --text: #e8e8f0;
-            --text-secondary: #9b9bb8;
+            --text-secondary: #8a8a9a;
             --purple: #a855f7;
-            --purple-glow: rgba(168, 85, 247, 0.3);
-            --glass: rgba(255, 255, 255, 0.04);
-            --glass-hover: rgba(255, 255, 255, 0.07);
-            --red: #ef4444;
+            --purple-glow: rgba(168, 85, 247, 0.25);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-hover: rgba(255, 255, 255, 0.06);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
         }
 
         * {
@@ -25,7 +31,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+            font-family: var(--font-body);
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
@@ -34,7 +40,6 @@
             justify-content: center;
             padding: 20px;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         body::before {
@@ -45,11 +50,11 @@
             width: 200%;
             height: 200%;
             background:
-                radial-gradient(ellipse at 30% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 60%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(168, 85, 247, 0.04) 0%, transparent 40%);
+                radial-gradient(ellipse at 35% 25%, rgba(168, 85, 247, 0.06) 0%, transparent 45%),
+                radial-gradient(ellipse at 65% 55%, rgba(139, 92, 246, 0.04) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 75%, rgba(168, 85, 247, 0.03) 0%, transparent 40%);
             z-index: 0;
-            animation: bgShift 20s ease-in-out infinite;
+            animation: bgShift 25s ease-in-out infinite;
         }
 
         @keyframes bgShift {
@@ -58,39 +63,39 @@
                 transform: translate(0, 0);
             }
             33% {
-                transform: translate(1%, -1%);
+                transform: translate(1.5%, -1%);
             }
             66% {
-                transform: translate(-1%, 1%);
+                transform: translate(-1%, 1.5%);
             }
         }
 
         .container {
             position: relative;
             z-index: 1;
-            max-width: 480px;
+            max-width: 520px;
             width: 100%;
-            text-align: center;
         }
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
             border: 1px solid var(--border);
-            border-radius: 32px;
-            padding: 52px 40px;
+            border-radius: 36px;
+            padding: 56px 44px;
             box-shadow:
-                0 8px 32px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.03) inset,
-                0 1px 0 rgba(255, 255, 255, 0.05) inset;
-            animation: cardAppear 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+                0 12px 40px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+                0 1px 0 rgba(255, 255, 255, 0.04) inset;
+            animation: cardAppear 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            text-align: center;
         }
 
         @keyframes cardAppear {
             from {
                 opacity: 0;
-                transform: translateY(30px) scale(0.96);
+                transform: translateY(40px) scale(0.95);
             }
             to {
                 opacity: 1;
@@ -99,74 +104,57 @@
         }
 
         .header {
-            margin-bottom: 44px;
-        }
-
-        .header .icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(139, 92, 246, 0.1));
-            border: 1px solid rgba(168, 85, 247, 0.25);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+            margin-bottom: 12px;
         }
 
         .header h1 {
-            font-size: 2.2em;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #e8e8f0 0%, #c4b5fd 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 6px;
+            font-family: var(--font-display);
+            font-size: 4em;
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: 0.9;
+            color: #fff;
+            margin-bottom: 8px;
         }
 
-        .header p {
-            font-size: 0.9em;
-            color: var(--text-secondary);
-            letter-spacing: 1.5px;
+        .header .role {
+            font-family: var(--font-body);
+            font-size: 0.7em;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--purple);
             font-weight: 500;
+        }
+
+        .divider {
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--purple), transparent);
+            margin: 32px auto;
+            border-radius: 1px;
         }
 
         .btn-primary {
             display: block;
             width: 100%;
             padding: 20px 32px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             background: var(--purple);
             border: none;
             border-radius: 18px;
             color: #fff;
-            font-family: inherit;
-            font-size: 1.05em;
+            font-family: var(--font-body);
+            font-size: 1em;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
             box-shadow:
-                0 4px 20px rgba(168, 85, 247, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-                0 1px 0 rgba(255, 255, 255, 0.2) inset;
+                0 4px 20px rgba(168, 85, 247, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                0 1px 0 rgba(255, 255, 255, 0.15) inset;
         }
 
         .btn-primary::before {
@@ -176,8 +164,12 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.15),
+                    rgba(255, 255, 255, 0.08),
+                    transparent);
+            transition: left 0.7s ease;
         }
 
         .btn-primary:hover::before {
@@ -185,27 +177,29 @@
         }
         .btn-primary:hover {
             background: #9333ea;
-            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+            box-shadow:
+                0 8px 30px rgba(168, 85, 247, 0.55),
+                0 0 0 1px rgba(255, 255, 255, 0.12) inset;
             transform: translateY(-2px);
         }
         .btn-primary:active {
-            transform: translateY(0) scale(0.98);
-            transition: transform 0.1s ease;
+            transform: translateY(0) scale(0.97);
         }
 
         .btn-secondary {
             display: block;
-            width: 85%;
+            width: 80%;
             margin: 0 auto;
-            padding: 14px 28px;
+            padding: 13px 24px;
             background: transparent;
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 14px;
             color: var(--text-secondary);
-            font-family: inherit;
-            font-size: 0.85em;
+            font-family: var(--font-body);
+            font-size: 0.8em;
             font-weight: 500;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
@@ -213,33 +207,49 @@
         }
 
         .btn-secondary:hover {
-            border-color: rgba(168, 85, 247, 0.5);
+            border-color: rgba(168, 85, 247, 0.4);
             color: #fff;
-            background: rgba(255, 255, 255, 0.03);
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.08);
         }
 
+        .address {
+            margin-top: 36px;
+            font-family: var(--font-body);
+            font-size: 0.75em;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            line-height: 1.7;
+        }
+
+        .address strong {
+            color: #c4b5fd;
+            font-weight: 500;
+        }
+
+        /* Модальное окно */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             z-index: 100;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
+
         .modal-overlay.visible {
             display: flex;
         }
 
         .modal {
-            background: var(--card-bg);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid var(--border);
+            background: rgba(18, 18, 32, 0.7);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 28px;
             padding: 40px 32px;
             max-width: 460px;
@@ -247,13 +257,15 @@
             max-height: 90vh;
             overflow-y: auto;
             animation: modalIn 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.04) inset;
         }
 
         @keyframes modalIn {
             from {
                 opacity: 0;
-                transform: translateY(20px) scale(0.95);
+                transform: translateY(24px) scale(0.94);
             }
             to {
                 opacity: 1;
@@ -262,113 +274,109 @@
         }
 
         .modal h2 {
-            text-align: center;
-            font-size: 1.4em;
+            font-family: var(--font-display);
+            font-size: 1.6em;
             font-weight: 700;
-            margin-bottom: 6px;
-            background: linear-gradient(135deg, #e8e8f0 0%, #c4b5fd 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 4px;
         }
 
         .modal .subtitle {
             text-align: center;
-            font-size: 0.8em;
+            font-family: var(--font-body);
+            font-size: 0.75em;
             color: var(--text-secondary);
             margin-bottom: 28px;
-            letter-spacing: 0.5px;
         }
 
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.7em;
+            font-family: var(--font-body);
+            font-size: 0.65em;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.5px;
             color: var(--text-secondary);
-            margin-bottom: 7px;
+            margin-bottom: 6px;
             margin-left: 4px;
         }
 
         .input-glass {
             width: 100%;
             padding: 13px 16px;
-            background: var(--glass);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 14px;
-            color: var(--text);
-            font-family: inherit;
-            font-size: 0.95em;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.9em;
             transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
             outline: none;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
+
         .input-glass:hover {
-            background: var(--glass-hover);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.14);
         }
         .input-glass:focus {
             border-color: var(--purple);
-            box-shadow: 0 0 0 4px var(--purple-glow), 0 0 20px rgba(168, 85, 247, 0.15);
-            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 0 4px var(--purple-glow);
+            background: rgba(255, 255, 255, 0.05);
         }
         .input-glass::placeholder {
-            color: rgba(255, 255, 255, 0.25);
-        }
-        .input-glass.input-error {
-            border-color: var(--red) !important;
-            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2) !important;
+            color: rgba(255, 255, 255, 0.2);
         }
 
         select.input-glass {
             cursor: pointer;
             appearance: none;
             -webkit-appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239b9bb8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8a9a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 16px center;
             padding-right: 40px;
         }
         select.input-glass option {
-            background: #1a1a2e;
+            background: #14142b;
             color: #e8e8f0;
         }
 
         textarea.input-glass {
             resize: vertical;
-            min-height: 80px;
+            min-height: 75px;
         }
 
         .row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            gap: 12px;
         }
 
         .btn-submit {
-            width: 72%;
-            margin: 8px auto 0;
+            width: 68%;
+            margin: 6px auto 0;
             display: block;
-            padding: 14px 24px;
+            padding: 13px 24px;
             background: var(--purple);
             border: none;
             border-radius: 16px;
             color: #fff;
-            font-family: inherit;
-            font-size: 0.9em;
+            font-family: var(--font-body);
+            font-size: 0.85em;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+            box-shadow:
+                0 4px 15px rgba(168, 85, 247, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.08) inset;
         }
         .btn-submit::before {
             content: '';
@@ -377,43 +385,33 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.7s ease;
         }
         .btn-submit:hover::before {
             left: 100%;
         }
         .btn-submit:hover {
             background: #9333ea;
-            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.6);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
             transform: translateY(-1px);
         }
         .btn-submit:active {
-            transform: translateY(0) scale(0.98);
+            transform: translateY(0) scale(0.97);
         }
         .btn-submit:disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             pointer-events: none;
         }
 
-        .error-message {
-            color: #fca5a5;
-            font-size: 0.78em;
-            text-align: center;
-            margin-top: 6px;
-            display: none;
-        }
-        .error-message.visible {
-            display: block;
-        }
-
+        /* Всплывашка Telegram */
         .tg-overlay {
             display: none;
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             z-index: 200;
             align-items: center;
             justify-content: center;
@@ -422,41 +420,51 @@
             display: flex;
         }
         .tg-popup {
-            background: var(--card-bg);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid var(--border);
+            background: rgba(18, 18, 32, 0.7);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 28px;
             padding: 44px 32px;
             text-align: center;
-            max-width: 400px;
+            max-width: 380px;
             width: 90%;
             animation: modalIn 0.6s ease;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
         }
         .tg-popup .tg-icon {
-            width: 72px;
-            height: 72px;
+            width: 68px;
+            height: 68px;
             margin: 0 auto 20px;
             background: linear-gradient(135deg, #2AABEE, #229ED9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
-            animation: float 2.5s ease-in-out infinite;
+            font-size: 34px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-7px);
+            }
         }
         .tg-popup h2 {
+            font-family: var(--font-display);
             font-size: 1.4em;
             font-weight: 700;
             color: #fff;
             margin-bottom: 10px;
         }
         .tg-popup p {
+            font-family: var(--font-body);
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-size: 0.85em;
             line-height: 1.5;
-            margin-bottom: 6px;
         }
         .tg-popup .highlight {
             color: #7dd3fc;
@@ -466,75 +474,19 @@
             margin-top: 24px;
         }
 
-        .busy-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 200;
-            align-items: center;
-            justify-content: center;
-        }
-        .busy-overlay.visible {
-            display: flex;
-        }
-        .busy-popup {
-            background: var(--card-bg);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 28px;
-            padding: 44px 32px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            animation: modalIn 0.6s ease;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-        }
-        .busy-popup .busy-icon {
-            width: 72px;
-            height: 72px;
-            margin: 0 auto 20px;
-            background: rgba(239, 68, 68, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-        }
-        .busy-popup h2 {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .busy-popup p {
-            color: var(--text-secondary);
-            font-size: 0.9em;
-            line-height: 1.5;
-        }
-        .busy-popup .btn-primary {
-            margin-top: 24px;
-            background: #6b7280;
-        }
-
         @media (max-width: 500px) {
             .card {
-                padding: 36px 24px;
-                border-radius: 28px;
+                padding: 40px 24px;
+                border-radius: 30px;
+            }
+            .header h1 {
+                font-size: 3em;
             }
             .modal {
                 padding: 28px 20px;
-                border-radius: 24px;
             }
             .row {
                 grid-template-columns: 1fr;
-                gap: 0;
-            }
-            .header h1 {
-                font-size: 1.8em;
             }
             .btn-secondary {
                 width: 90%;
@@ -549,23 +501,31 @@
     <div class="container">
         <div class="card">
             <div class="header">
-                <div class="icon">⚡</div>
-                <h1>Nana Okeana</h1>
-                <p>TATTOO MASTER</p>
+                <h1>Nana<br>Okeana</h1>
+                <p class="role">Tattoo Master</p>
             </div>
+
+            <div class="divider"></div>
+
             <button class="btn-primary" onclick="openModal()">Записаться на сеанс</button>
             <button class="btn-secondary" onclick="openContacts()">Контакты</button>
+
+            <div class="address">
+                проспект Маршала Жукова, 135<br>
+                студия <strong>KARMA OMUT</strong>
+            </div>
         </div>
     </div>
 
+    <!-- Анкета -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <h2>Запись на сеанс</h2>
-            <p class="subtitle">Заполните анкету, и мастер свяжется с вами</p>
+            <p class="subtitle">Заполните анкету — мастер свяжется с вами</p>
             <form id="bookingForm">
                 <div class="form-group">
                     <label>Идея татуировки</label>
-                    <textarea class="input-glass" id="idea" rows="3" placeholder="Опишите вашу идею, стиль, сюжет..." required></textarea>
+                    <textarea class="input-glass" id="idea" rows="3" placeholder="Опишите идею, стиль, сюжет..." required></textarea>
                 </div>
                 <div class="form-group">
                     <label>Место расположения</label>
@@ -596,7 +556,7 @@
                 <div class="row">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="input-glass" id="name" placeholder="Алексей" required>
+                        <input type="text" class="input-glass" id="name" placeholder="Ваше имя" required>
                     </div>
                     <div class="form-group">
                         <label>Телефон</label>
@@ -607,70 +567,64 @@
                     <label>Telegram username</label>
                     <input type="text" class="input-glass" id="telegram" placeholder="@username">
                 </div>
-                <p style="font-size:0.7em;color:var(--text-secondary);text-align:center;margin-bottom:8px;">
-                    🔔 На Telegram придёт подтверждение и напоминание
+                <p style="font-size:0.65em;color:var(--text-secondary);text-align:center;margin-bottom:14px;">
+                    🔔 На Telegram придёт подтверждение и напоминание за день до сеанса
                 </p>
-                <p class="error-message" id="errorMessage">Это время уже занято. Выберите другую дату или время.</p>
                 <button type="submit" class="btn-submit">Готово</button>
             </form>
         </div>
     </div>
 
+    <!-- Всплывашка Telegram -->
     <div class="tg-overlay" id="tgOverlay">
         <div class="tg-popup">
             <div class="tg-icon">✈️</div>
             <h2>Загляните в Telegram</h2>
             <p>Заявка отправлена мастеру <span class="highlight">@nana_okeana</span></p>
-            <p style="font-size:0.8em;margin-top:8px;">Напоминание придёт за день до сеанса 🔔</p>
+            <p style="font-size:0.78em;margin-top:8px;">Там же придёт напоминание<br>за день до сеанса 🔔</p>
             <button class="btn-primary" onclick="closeTgPopup()">Понятно</button>
         </div>
     </div>
 
-    <div class="busy-overlay" id="busyOverlay">
-        <div class="busy-popup">
-            <div class="busy-icon">📅</div>
-            <h2>Время занято</h2>
-            <p>На эту дату и время уже есть запись. Пожалуйста, выберите другое время.</p>
-            <button class="btn-primary" onclick="closeBusyPopup()">Понятно</button>
-        </div>
-    </div>
-
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4uPl9XDei5Ser72hGBe1bVVU8fr45RhUjlhg5mcroPIixd-cUxOfEmmoOiR_kaCC-/exec';
+        const GOOGLE_SCRIPT_URL =
+            'https://script.google.com/macros/s/AKfycbyMi6E8wnZRzCDG9KGE455ZuCR7VxjexyjyCc3VziOQPgg-C_QrBJZM1sBlP8jcTwgK/exec';
         const TELEGRAM_BOT_TOKEN = '8804288065:AAHw8rFffYYCt_fT3orqx-scfHzoDREe-bo';
         const MASTER_CHAT_ID = '905404501';
         const MASTER_TG_LINK = 'https://t.me/nana_okeana';
 
-        function openModal() { document.getElementById('modalOverlay').classList.add('visible');
-            document.body.style.overflow = 'hidden'; }
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
 
-        function closeModal() { document.getElementById('modalOverlay').classList.remove('visible');
-            document.body.style.overflow = ''; }
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('visible');
+            document.body.style.overflow = '';
+        }
 
-        function openContacts() { window.open(MASTER_TG_LINK, '_blank'); }
+        function openContacts() {
+            window.open(MASTER_TG_LINK, '_blank');
+        }
 
-        function closeTgPopup() { document.getElementById('tgOverlay').classList.remove('visible');
+        function closeTgPopup() {
+            document.getElementById('tgOverlay').classList.remove('visible');
             document.body.style.overflow = '';
             document.getElementById('bookingForm').reset();
-            document.getElementById('errorMessage').classList.remove('visible'); }
+        }
 
-        function closeBusyPopup() { document.getElementById('busyOverlay').classList.remove('visible');
-            document.body.style.overflow = ''; }
-
-        document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this)
-            closeModal(); });
-        document.getElementById('tgOverlay').addEventListener('click', function(e) { if (e.target === this)
-            closeTgPopup(); });
-        document.getElementById('busyOverlay').addEventListener('click', function(e) { if (e.target === this)
-            closeBusyPopup(); });
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        document.getElementById('tgOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeTgPopup();
+        });
 
         document.getElementById('bookingForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = e.target.querySelector('.btn-submit');
             const originalText = btn.textContent;
-            const errorEl = document.getElementById('errorMessage');
-            errorEl.classList.remove('visible');
-            btn.textContent = 'Проверка...';
+            btn.textContent = 'Отправка...';
             btn.disabled = true;
 
             const formData = {
@@ -681,57 +635,38 @@
                 name: document.getElementById('name').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
                 telegram: document.getElementById('telegram').value.trim() || '—',
+                timestamp: new Date().toISOString(),
             };
 
             try {
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
+                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData),
                 });
-                const result = await response.json();
 
-                if (result.result === 'busy') {
-                    errorEl.classList.add('visible');
-                    document.getElementById('date').classList.add('input-error');
-                    document.getElementById('time').classList.add('input-error');
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                    return;
-                }
+                const masterMsg = `🖤 <b>НОВАЯ ЗАПИСЬ</b>\n👤 <b>${formData.name}</b>\n📞 ${formData.phone}\n✈️ ${formData.telegram}\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}`;
 
-                const masterMsg = `
-        🖤 <b>НОВАЯ ЗАПИСЬ</b>
-        👤 <b>${formData.name}</b>
-        📞 ${formData.phone}
-        ✈️ ${formData.telegram}
-        📅 ${formData.date} в ${formData.time}
-        💡 ${formData.idea}
-        📍 ${formData.placement}
-                `.trim();
                 await sendTelegram(MASTER_CHAT_ID, masterMsg);
 
                 if (formData.telegram && formData.telegram !== '—') {
                     const clientMsg =
-                        `✅ <b>Заявка принята!</b>\n\nМастер скоро свяжется с вами.\n\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}\n\n🔔 Напоминание придёт за день до сеанса.`;
-                    await sendTelegramToUsername(formData.telegram, clientMsg);
+                        `📨 <b>ОТПРАВИТЬ КЛИЕНТУ</b> ${formData.telegram}:\n\n✅ Заявка принята!\nМастер скоро свяжется с вами.\n\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}\n\n🔔 Напоминание придёт за день до сеанса.`;
+                    await sendTelegram(MASTER_CHAT_ID, clientMsg);
                 }
 
                 closeModal();
                 document.getElementById('tgOverlay').classList.add('visible');
                 document.body.style.overflow = 'hidden';
-
             } catch (error) {
                 console.error('Ошибка:', error);
-                alert('Ошибка отправки. Попробуйте ещё раз.');
+                alert('Ошибка отправки. Напишите мастеру в Telegram: @nana_okeana');
             } finally {
                 btn.textContent = originalText;
                 btn.disabled = false;
             }
         });
-
-        document.getElementById('date').addEventListener('change', function() { this.classList.remove('input-error'); });
-        document.getElementById('time').addEventListener('change', function() { this.classList.remove('input-error'); });
 
         async function sendTelegram(chatId, text) {
             try {
@@ -740,16 +675,13 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' }),
                 });
-            } catch (e) { console.log('TG error:', e); }
-        }
-
-        async function sendTelegramToUsername(username, text) {
-            const note = `📨 <b>ОТПРАВИТЬ КЛИЕНТУ</b> ${username}:\n\n${text}`;
-            await sendTelegram(MASTER_CHAT_ID, note);
+            } catch (e) {
+                console.log('TG error:', e);
+            }
         }
 
         document.getElementById('date').setAttribute('min', new Date().toISOString().split('T')[0]);
-        console.log('🚀 Сайт Tattoo Nana готов');
+        console.log('🚀 Сайт готов');
     </script>
 </body>
 </html>
