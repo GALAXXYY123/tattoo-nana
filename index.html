@@ -413,25 +413,15 @@
     </div>
 
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzqU4K-FKuK26c8ylOrm4uMfs7yQu3UxkFuzQhXdSSxVw0Nl4J752Ht-f_xKTY-QmCB/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-k4h40VzExexX24P0m3qDfNVPbmElvT5uPsQrQMQBB1MEg7CmCLr41nUrrIL-rtmA/exec';
         const TELEGRAM_BOT_TOKEN = '8804288065:AAHw8rFffYYCt_fT3orqx-scfHzoDREe-bo';
         const MASTER_CHAT_ID = '905404501';
         const MASTER_TG_LINK = 'https://t.me/nana_okeana';
 
-        function openModal() {
-            document.getElementById('modalOverlay').classList.add('visible');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('visible');
-            document.body.style.overflow = '';
-        }
+        function openModal() { document.getElementById('modalOverlay').classList.add('visible'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('modalOverlay').classList.remove('visible'); document.body.style.overflow = ''; }
         function openContacts() { window.open(MASTER_TG_LINK, '_blank'); }
-        function closeTgPopup() {
-            document.getElementById('tgOverlay').classList.remove('visible');
-            document.body.style.overflow = '';
-            document.getElementById('bookingForm').reset();
-        }
+        function closeTgPopup() { document.getElementById('tgOverlay').classList.remove('visible'); document.body.style.overflow = ''; document.getElementById('bookingForm').reset(); }
 
         document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
         document.getElementById('tgOverlay').addEventListener('click', function(e) { if (e.target === this) closeTgPopup(); });
@@ -450,27 +440,23 @@
                 name: document.getElementById('name').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
                 telegram: document.getElementById('telegram').value.trim() || '—',
-                timestamp: new Date().toISOString(),
             };
 
             try {
-                // Отправка в Google Таблицы (через JSONP-обход CORS)
-                const scriptUrl = GOOGLE_SCRIPT_URL + '?data=' + encodeURIComponent(JSON.stringify(formData));
-                await fetch(scriptUrl, { method: 'GET', mode: 'no-cors' });
+                const url = GOOGLE_SCRIPT_URL + '?data=' + encodeURIComponent(JSON.stringify(formData));
+                await fetch(url, { method: 'GET', mode: 'no-cors' });
 
-                // Отправка в Telegram
                 const masterMsg = `🖤 <b>НОВАЯ ЗАПИСЬ</b>\n👤 <b>${formData.name}</b>\n📞 ${formData.phone}\n✈️ ${formData.telegram}\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}`;
                 await sendTelegram(MASTER_CHAT_ID, masterMsg);
 
                 if (formData.telegram && formData.telegram !== '—') {
-                    const clientMsg = `📨 <b>ОТПРАВИТЬ КЛИЕНТУ</b> ${formData.telegram}:\n\n✅ Заявка принята!\nМастер скоро свяжется с вами.\n\n📅 ${formData.date} в ${formData.time}\n💡 ${formData.idea}\n📍 ${formData.placement}\n\n🔔 Напоминание придёт за день до сеанса.`;
+                    const clientMsg = `📨 <b>ОТПРАВИТЬ КЛИЕНТУ</b> ${formData.telegram}:\n\n✅ Заявка принята!\n📅 ${formData.date} в ${formData.time}\n\n🔔 Напоминание придёт за день до сеанса.`;
                     await sendTelegram(MASTER_CHAT_ID, clientMsg);
                 }
 
                 closeModal();
                 document.getElementById('tgOverlay').classList.add('visible');
             } catch (error) {
-                console.error('Ошибка:', error);
                 alert('Ошибка. Напишите мастеру: @nana_okeana');
             } finally {
                 btn.textContent = 'Готово';
@@ -485,11 +471,11 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' }),
                 });
-            } catch (e) { console.log('TG error:', e); }
+            } catch (e) {}
         }
 
         document.getElementById('date').setAttribute('min', new Date().toISOString().split('T')[0]);
-        console.log('✅ Сайт готов. Баг исправлен — данные передаются через GET с параметром data.');
+        console.log('✅ Сайт готов. Данные идут в таблицу, уведомления в Telegram.');
     </script>
 </body>
 </html>
